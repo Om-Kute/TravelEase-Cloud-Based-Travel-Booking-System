@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TravelEase | Hotels</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/hotel.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header class="header">
+
+        <nav class="navbar">
+
+            <div class="logo">
+
+                <a href="index.html">
+
+                    <h2>TravelEase</h2>
+
+                </a>
+
+            </div>
+
+            <ul class="nav-links">
+
+                <li><a href="index.html">Home</a></li>
+
+                <li><a href="hotels.html" class="active">Hotels</a></li>
+
+                <li><a href="history.html">History</a></li>
+
+                <li><a href="login.html">Login</a></li>
+
+                <li><a href="signup.html" class="signup-btn">Sign Up</a></li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+    <!-- Hotels -->
+
+    <section class="hotel-page">
+
+        <div class="hotel-header">
+
+            <h1>Find Your Perfect Hotel</h1>
+
+            <p>Search, filter and book hotels at the best price.</p>
+
+        </div>
+
+        <!-- Search -->
+
+        <div class="hotel-search">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search by Hotel or City"
+                onkeyup="searchHotels()">
+
+            <select onchange="filterCity(this.value)">
+
+                <option value="All">All Cities</option>
+
+                <option value="Mumbai">Mumbai</option>
+
+                <option value="Goa">Goa</option>
+
+                <option value="Manali">Manali</option>
+
+                <option value="Jaipur">Jaipur</option>
+
+                <option value="Udaipur">Udaipur</option>
+
+            </select>
+
+            <select onchange="sortPrice(this.value)">
+
+                <option value="">Sort By Price</option>
+
+                <option value="low">Low to High</option>
+
+                <option value="high">High to Low</option>
+
+            </select>
+
+        </div>
+
+        <!-- Hotel List -->
+
+        <div
+            id="hotelContainer"
+            class="hotel-grid">
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div>
+
+                <h3>TravelEase</h3>
+
+                <p>Cloud Based Hotel Booking Platform.</p>
+
+            </div>
+
+            <div>
+
+                <h3>Quick Links</h3>
+
+                <ul>
+
+                    <li><a href="index.html">Home</a></li>
+
+                    <li><a href="booking.html">Booking</a></li>
+
+                    <li><a href="history.html">History</a></li>
+
+                </ul>
+
+            </div>
+
+            <div>
+
+                <h3>Contact</h3>
+
+                <p>support@travelease.com</p>
+
+                <p>+91 9876543210</p>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <p class="copyright">
+
+            © 2026 TravelEase. All Rights Reserved.
+
+        </p>
+
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/hotels.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

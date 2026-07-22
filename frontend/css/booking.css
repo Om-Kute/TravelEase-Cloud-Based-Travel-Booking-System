@@ -1,0 +1,263 @@
+/* ==========================================================
+   BOOKING PAGE
+========================================================== */
+
+.booking-section{
+
+    width:90%;
+
+    max-width:1300px;
+
+    margin:120px auto 60px;
+
+}
+
+/* ==========================================================
+   CONTAINER
+========================================================== */
+
+.booking-container{
+
+    display:grid;
+
+    grid-template-columns:1fr 1.2fr;
+
+    gap:35px;
+
+    align-items:start;
+
+}
+
+/* ==========================================================
+   SUMMARY CARD
+========================================================== */
+
+.booking-summary{
+
+    background:#ffffff;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+    position:sticky;
+
+    top:110px;
+
+}
+
+.booking-summary h2{
+
+    color:#0d6efd;
+
+    margin-bottom:25px;
+
+    font-size:30px;
+
+}
+
+#bookingSummary img{
+
+    width:100%;
+
+    height:230px;
+
+    object-fit:cover;
+
+    border-radius:12px;
+
+    margin-bottom:20px;
+
+}
+
+#bookingSummary h3{
+
+    font-size:24px;
+
+    margin-bottom:12px;
+
+    color:#222;
+
+}
+
+#bookingSummary p{
+
+    color:#666;
+
+    margin-bottom:10px;
+
+    line-height:1.7;
+
+}
+
+#bookingSummary h4{
+
+    color:#0d6efd;
+
+    margin-top:18px;
+
+    font-size:24px;
+
+}
+
+/* ==========================================================
+   BOOKING FORM
+========================================================== */
+
+.booking-form-container{
+
+    background:#ffffff;
+
+    padding:35px;
+
+    border-radius:18px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+}
+
+.booking-form-container h2{
+
+    color:#0d6efd;
+
+    margin-bottom:30px;
+
+    font-size:30px;
+
+}
+
+/* ==========================================================
+   INPUT GROUP
+========================================================== */
+
+.input-group{
+
+    margin-bottom:22px;
+
+}
+
+.input-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+    color:#333;
+
+}
+
+.input-group input,
+.input-group select{
+
+    width:100%;
+
+    padding:15px;
+
+    border:1px solid #d7d7d7;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+.input-group input:focus,
+.input-group select:focus{
+
+    border-color:#0d6efd;
+
+    box-shadow:0 0 8px rgba(13,110,253,.20);
+
+}
+
+/* ==========================================================
+   BUTTON
+========================================================== */
+
+.booking-form-container .btn{
+
+    width:100%;
+
+    margin-top:10px;
+
+    padding:15px;
+
+    border:none;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:992px){
+
+    .booking-container{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .booking-summary{
+
+        position:static;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .booking-section{
+
+        width:95%;
+
+    }
+
+    .booking-summary{
+
+        padding:25px;
+
+    }
+
+    .booking-form-container{
+
+        padding:25px;
+
+    }
+
+    .booking-summary h2,
+    .booking-form-container h2{
+
+        font-size:26px;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .booking-summary h2,
+    .booking-form-container h2{
+
+        font-size:22px;
+
+    }
+
+    #bookingSummary img{
+
+        height:180px;
+
+    }
+
+}

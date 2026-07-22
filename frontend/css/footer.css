@@ -1,0 +1,160 @@
+/* ==========================================================
+   FOOTER
+========================================================== */
+
+.footer{
+
+    background:#0f172a;
+
+    color:#ffffff;
+
+    padding:60px 0 20px;
+}
+
+/* ==========================================================
+   FOOTER CONTAINER
+========================================================== */
+
+.footer-container{
+
+    width:90%;
+
+    max-width:1300px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:40px;
+}
+
+/* ==========================================================
+   FOOTER HEADINGS
+========================================================== */
+
+.footer h3{
+
+    font-size:22px;
+
+    margin-bottom:20px;
+
+    color:#ffffff;
+}
+
+/* ==========================================================
+   FOOTER PARAGRAPH
+========================================================== */
+
+.footer p{
+
+    color:#cbd5e1;
+
+    line-height:1.8;
+
+    font-size:15px;
+}
+
+/* ==========================================================
+   FOOTER LINKS
+========================================================== */
+
+.footer ul{
+
+    padding:0;
+}
+
+.footer ul li{
+
+    margin-bottom:12px;
+}
+
+.footer ul li a{
+
+    color:#cbd5e1;
+
+    transition:.3s;
+}
+
+.footer ul li a:hover{
+
+    color:#38bdf8;
+
+    padding-left:6px;
+}
+
+/* ==========================================================
+   SOCIAL ICONS
+========================================================== */
+
+.social-icons{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:20px;
+}
+
+.social-icons a{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    background:#1e293b;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#ffffff;
+
+    font-size:18px;
+
+    transition:.3s;
+}
+
+.social-icons a:hover{
+
+    background:#0d6efd;
+
+    transform:translateY(-4px);
+}
+
+/* ==========================================================
+   FOOTER DIVIDER
+========================================================== */
+
+.footer hr{
+
+    width:90%;
+
+    max-width:1300px;
+
+    margin:40px auto 20px;
+
+    border:none;
+
+    border-top:1px solid rgba(255,255,255,.15);
+}
+
+/* ==========================================================
+   COPYRIGHT
+========================================================== */
+
+.copyright{
+
+    text-align:center;
+
+    color:#94a3b8;
+
+    font-size:14px;
+
+    letter-spacing:.5px;
+}

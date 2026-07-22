@@ -1,0 +1,669 @@
+{
+  "info": {
+    "_postman_id": "9d3b40d2-98b1-4aef-8d39-7a91d6ef1001",
+    "name": "TravelEase API Collection",
+    "description": "Complete Postman Collection for the TravelEase Hotel Booking System.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000/api"
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "hotelId",
+      "value": ""
+    },
+    {
+      "key": "bookingId",
+      "value": ""
+    },
+    {
+      "key": "paymentId",
+      "value": ""
+    }
+  ],
+
+  "item": [
+
+    {
+      "name": "Authentication",
+      "item": [
+
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\":\"Om\",\n  \"lastName\":\"Kute\",\n  \"email\":\"om@example.com\",\n  \"password\":\"Password@123\",\n  \"phone\":\"9876543210\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          }
+        },
+
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if(pm.response.code===200){",
+                  "var json=pm.response.json();",
+                  "pm.collectionVariables.set('token',json.token);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\":\"om@example.com\",\n  \"password\":\"Password@123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          }
+        },
+
+        {
+          "name": "Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/profile",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "profile"
+              ]
+            }
+          }
+        }
+
+      ]
+    },
+{
+  "name": "Hotels",
+  "item": [
+
+    {
+      "name": "Get All Hotels",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/hotels",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "hotels"
+          ]
+        }
+      }
+    },
+
+    {
+      "name": "Get Hotel By ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/hotels/{{hotelId}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "hotels",
+            "{{hotelId}}"
+          ]
+        }
+      }
+    },
+
+    {
+      "name": "Search Hotels",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/hotels/search?city=Mumbai&rating=4",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "hotels",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "city",
+              "value": "Mumbai"
+            },
+            {
+              "key": "rating",
+              "value": "4"
+            }
+          ]
+        }
+      }
+    },
+
+    {
+      "name": "Search By Price",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/hotels/search?minPrice=3000&maxPrice=7000",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "hotels",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "minPrice",
+              "value": "3000"
+            },
+            {
+              "key": "maxPrice",
+              "value": "7000"
+            }
+          ]
+        }
+      }
+    },
+
+    {
+      "name": "Search Featured Hotels",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/hotels?featured=true",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "hotels"
+          ],
+          "query": [
+            {
+              "key": "featured",
+              "value": "true"
+            }
+          ]
+        }
+      }
+    }
+
+  ]
+},
+{
+  "name": "Bookings",
+  "item": [
+
+    {
+      "name": "Create Booking",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"hotelId\":\"{{hotelId}}\",\n  \"checkIn\":\"2026-08-15\",\n  \"checkOut\":\"2026-08-18\",\n  \"guests\":2,\n  \"rooms\":1\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/bookings",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "bookings"
+          ]
+        }
+      }
+    },
+
+    {
+      "name": "Booking History",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/bookings/history",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "bookings",
+            "history"
+          ]
+        }
+      }
+    },
+
+    {
+      "name": "Get Booking By ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/bookings/{{bookingId}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "bookings",
+            "{{bookingId}}"
+          ]
+        }
+      }
+    },
+
+    {
+      "name": "Cancel Booking",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/bookings/cancel/{{bookingId}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "bookings",
+            "cancel",
+            "{{bookingId}}"
+          ]
+        }
+      }
+    },
+
+    {
+      "name": "Delete Booking (Admin)",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/bookings/{{bookingId}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "bookings",
+            "{{bookingId}}"
+          ]
+        }
+      }
+    }
+
+  ]
+},
+{
+  "name": "Payments",
+  "item": [
+
+    {
+      "name": "Create Payment",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"bookingId\":\"{{bookingId}}\",\n  \"paymentMethod\":\"UPI\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/payments",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "payments"
+          ]
+        }
+      }
+    },
+
+    {
+      "name": "Verify Payment",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"paymentId\":\"{{paymentId}}\",\n  \"transactionId\":\"TXN123456789\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/payments/verify",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "payments",
+            "verify"
+          ]
+        }
+      }
+    },
+
+    {
+      "name": "Get Payment By ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/payments/{{paymentId}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "payments",
+            "{{paymentId}}"
+          ]
+        }
+      }
+    },
+
+    {
+      "name": "Payment History",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/payments/history",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "payments",
+            "history"
+          ]
+        }
+      }
+    },
+
+    {
+      "name": "Refund Payment (Admin)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"paymentId\":\"{{paymentId}}\",\n  \"reason\":\"Customer requested cancellation\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/payments/refund",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "payments",
+            "refund"
+          ]
+        }
+      }
+    }
+
+  ]
+},
+{
+  "name": "Upload",
+  "item": [
+
+    {
+      "name": "Upload Image",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "image",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/upload",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "upload"
+          ]
+        }
+      }
+    }
+
+  ]
+},
+{
+  "name": "Users",
+  "item": [
+
+    {
+      "name": "Get Profile",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/users/profile",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "profile"
+          ]
+        }
+      }
+    },
+
+    {
+      "name": "Update Profile",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\":\"Om\",\n  \"lastName\":\"Kute\",\n  \"phone\":\"9876543210\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/users/profile",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "profile"
+          ]
+        }
+      }
+    },
+
+    {
+      "name": "Get All Users (Admin)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/users",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users"
+          ]
+        }
+      }
+    },
+
+    {
+      "name": "Delete User (Admin)",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/users/{{userId}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "{{userId}}"
+          ]
+        }
+      }
+    }
+
+  ]
+}
+
+  ]
+}

@@ -1,0 +1,150 @@
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.header{
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1000;
+    background:rgba(255,255,255,0.95);
+    backdrop-filter:blur(12px);
+    box-shadow:0 2px 15px rgba(0,0,0,.08);
+}
+
+/* ==========================================================
+   NAVBAR
+========================================================== */
+
+.navbar{
+    width:90%;
+    max-width:1300px;
+    margin:auto;
+
+    height:80px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+/* ==========================================================
+   LOGO
+========================================================== */
+
+.logo a{
+    color:#0d6efd;
+}
+
+.logo h2{
+    font-size:30px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+/* ==========================================================
+   NAVIGATION
+========================================================== */
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:35px;
+}
+
+.nav-links li{
+    position:relative;
+}
+
+.nav-links a{
+    color:#333;
+    font-size:16px;
+    font-weight:500;
+    transition:.3s;
+}
+
+/* Underline Animation */
+
+.nav-links a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    bottom:-8px;
+
+    width:0;
+
+    height:2px;
+
+    background:#0d6efd;
+
+    transition:.3s;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after{
+
+    width:100%;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+
+    color:#0d6efd;
+}
+
+/* ==========================================================
+   SIGNUP BUTTON
+========================================================== */
+
+.signup-btn{
+
+    background:#0d6efd;
+
+    color:#fff !important;
+
+    padding:10px 22px;
+
+    border-radius:8px;
+
+    transition:.3s;
+}
+
+.signup-btn:hover{
+
+    background:#084dbd;
+}
+
+.signup-btn::after{
+
+    display:none;
+}
+
+/* ==========================================================
+   MOBILE MENU ICON
+========================================================== */
+
+.menu-toggle{
+
+    display:none;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+    color:#0d6efd;
+}
+
+/* ==========================================================
+   STICKY NAVBAR EFFECT
+========================================================== */
+
+.header.scrolled{
+
+    background:#ffffff;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.12);
+}

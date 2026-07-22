@@ -1,0 +1,343 @@
+/* ==========================================================
+   HOTEL PAGE
+========================================================== */
+
+.hotel-page{
+
+    width:90%;
+
+    max-width:1300px;
+
+    margin:120px auto 60px;
+
+}
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.hotel-header{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+}
+
+.hotel-header h1{
+
+    font-size:42px;
+
+    color:#0d6efd;
+
+    margin-bottom:15px;
+
+}
+
+.hotel-header p{
+
+    color:#666;
+
+    font-size:17px;
+
+}
+
+/* ==========================================================
+   SEARCH SECTION
+========================================================== */
+
+.hotel-search{
+
+    background:#ffffff;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr 1fr;
+
+    gap:20px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    margin-bottom:40px;
+
+}
+
+.hotel-search input,
+.hotel-search select{
+
+    padding:15px;
+
+    border:1px solid #dcdcdc;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+}
+
+.hotel-search input:focus,
+.hotel-search select:focus{
+
+    border-color:#0d6efd;
+
+}
+
+/* ==========================================================
+   HOTEL GRID
+========================================================== */
+
+.hotel-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:30px;
+
+}
+
+/* ==========================================================
+   HOTEL CARD
+========================================================== */
+
+.hotel-card{
+
+    background:#ffffff;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+.hotel-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 25px 45px rgba(0,0,0,.12);
+
+}
+
+.hotel-card img{
+
+    width:100%;
+
+    height:230px;
+
+    object-fit:cover;
+
+}
+
+/* ==========================================================
+   HOTEL CONTENT
+========================================================== */
+
+.hotel-content{
+
+    padding:20px;
+
+}
+
+.hotel-content h3{
+
+    font-size:24px;
+
+    margin-bottom:12px;
+
+    color:#222;
+
+}
+
+.hotel-content p{
+
+    color:#666;
+
+    margin-bottom:10px;
+
+}
+
+.hotel-content h4{
+
+    color:#0d6efd;
+
+    margin:15px 0;
+
+    font-size:22px;
+
+}
+
+/* ==========================================================
+   BUTTON
+========================================================== */
+
+.hotel-content .btn{
+
+    width:100%;
+
+    display:block;
+
+    text-align:center;
+
+}
+
+/* ==========================================================
+   HOTEL DETAILS PAGE
+========================================================== */
+
+.hotel-details-card{
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:130px auto 60px;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:40px;
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.10);
+
+}
+
+.hotel-image img{
+
+    width:100%;
+
+    height:500px;
+
+    object-fit:cover;
+
+    border-radius:15px;
+
+}
+
+.hotel-info h2{
+
+    font-size:36px;
+
+    color:#0d6efd;
+
+    margin-bottom:20px;
+
+}
+
+.hotel-info p{
+
+    margin-bottom:15px;
+
+    color:#555;
+
+    line-height:1.8;
+
+}
+
+.hotel-info h3{
+
+    margin-top:25px;
+
+    margin-bottom:15px;
+
+}
+
+.hotel-info ul{
+
+    padding-left:20px;
+
+    margin-bottom:30px;
+
+}
+
+.hotel-info ul li{
+
+    margin-bottom:10px;
+
+    list-style:disc;
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:992px){
+
+    .hotel-search{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .hotel-details-card{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .hotel-header h1{
+
+        font-size:32px;
+
+    }
+
+    .hotel-card img{
+
+        height:210px;
+
+    }
+
+    .hotel-image img{
+
+        height:300px;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .hotel-page{
+
+        width:95%;
+
+    }
+
+    .hotel-header h1{
+
+        font-size:28px;
+
+    }
+
+    .hotel-content h3{
+
+        font-size:20px;
+
+    }
+
+    .hotel-info h2{
+
+        font-size:28px;
+
+    }
+
+}

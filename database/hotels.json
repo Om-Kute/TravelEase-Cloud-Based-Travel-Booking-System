@@ -1,0 +1,279 @@
+[
+  {
+    "_id": "687000000000000000000001",
+    "name": "Grand Palace Hotel",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "country": "India",
+    "address": "Marine Drive, Mumbai",
+    "description": "Luxury hotel near Marine Drive with premium sea view rooms.",
+    "price": 6500,
+    "rating": 4.8,
+    "reviews": 1324,
+    "roomsAvailable": 25,
+    "amenities": [
+      "Free WiFi",
+      "Swimming Pool",
+      "Restaurant",
+      "Gym",
+      "Parking",
+      "Airport Shuttle"
+    ],
+    "images": [
+      "https://example.com/images/mumbai1.jpg",
+      "https://example.com/images/mumbai2.jpg"
+    ],
+    "featured": true
+  },
+  {
+    "_id": "687000000000000000000002",
+    "name": "Royal Residency",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "country": "India",
+    "address": "FC Road, Pune",
+    "description": "Comfortable business hotel in Pune.",
+    "price": 4200,
+    "rating": 4.4,
+    "reviews": 812,
+    "roomsAvailable": 18,
+    "amenities": [
+      "Free WiFi",
+      "Restaurant",
+      "Parking",
+      "Laundry"
+    ],
+    "images": [
+      "https://example.com/images/pune1.jpg"
+    ],
+    "featured": true
+  },
+  {
+    "_id": "687000000000000000000003",
+    "name": "Goa Beach Resort",
+    "city": "Goa",
+    "state": "Goa",
+    "country": "India",
+    "address": "Calangute Beach",
+    "description": "Beachfront resort with luxury villas.",
+    "price": 8200,
+    "rating": 4.9,
+    "reviews": 2410,
+    "roomsAvailable": 40,
+    "amenities": [
+      "Beach Access",
+      "Spa",
+      "Pool",
+      "Restaurant",
+      "Bar"
+    ],
+    "images": [
+      "https://example.com/images/goa1.jpg"
+    ],
+    "featured": true
+  },
+  {
+    "_id": "687000000000000000000004",
+    "name": "Lake View Palace",
+    "city": "Udaipur",
+    "state": "Rajasthan",
+    "country": "India",
+    "address": "Lake Pichola",
+    "description": "Heritage luxury hotel overlooking Lake Pichola.",
+    "price": 9800,
+    "rating": 4.9,
+    "reviews": 1670,
+    "roomsAvailable": 20,
+    "amenities": [
+      "Pool",
+      "Spa",
+      "Restaurant",
+      "Free WiFi"
+    ],
+    "images": [
+      "https://example.com/images/udaipur1.jpg"
+    ],
+    "featured": true
+  },
+  {
+    "_id": "687000000000000000000005",
+    "name": "Mountain Paradise",
+    "city": "Manali",
+    "state": "Himachal Pradesh",
+    "country": "India",
+    "address": "Old Manali",
+    "description": "Scenic mountain resort with valley view.",
+    "price": 5400,
+    "rating": 4.6,
+    "reviews": 978,
+    "roomsAvailable": 32,
+    "amenities": [
+      "Fireplace",
+      "Restaurant",
+      "Free WiFi",
+      "Parking"
+    ],
+    "images": [
+      "https://example.com/images/manali1.jpg"
+    ],
+    "featured": false
+  },
+  {
+    "_id": "687000000000000000000006",
+    "name": "Snow Peak Resort",
+    "city": "Shimla",
+    "state": "Himachal Pradesh",
+    "country": "India",
+    "address": "Mall Road",
+    "description": "Premium stay with mountain views.",
+    "price": 5900,
+    "rating": 4.5,
+    "reviews": 845,
+    "roomsAvailable": 27,
+    "amenities": [
+      "Restaurant",
+      "Free WiFi",
+      "Room Service",
+      "Parking"
+    ],
+    "images": [
+      "https://example.com/images/shimla1.jpg"
+    ],
+    "featured": false
+  },
+  {
+    "_id": "687000000000000000000007",
+    "name": "City Inn",
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "country": "India",
+    "address": "MG Road",
+    "description": "Business class hotel in city center.",
+    "price": 4600,
+    "rating": 4.3,
+    "reviews": 652,
+    "roomsAvailable": 30,
+    "amenities": [
+      "Gym",
+      "Restaurant",
+      "Free WiFi"
+    ],
+    "images": [
+      "https://example.com/images/bangalore1.jpg"
+    ],
+    "featured": false
+  },
+  {
+    "_id": "687000000000000000000008",
+    "name": "Tech Park Suites",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "address": "Hitech City",
+    "description": "Modern hotel for business travelers.",
+    "price": 5100,
+    "rating": 4.4,
+    "reviews": 734,
+    "roomsAvailable": 22,
+    "amenities": [
+      "Restaurant",
+      "Gym",
+      "Free WiFi"
+    ],
+    "images": [
+      "https://example.com/images/hyd1.jpg"
+    ],
+    "featured": false
+  },
+  {
+    "_id": "687000000000000000000009",
+    "name": "Green Valley Resort",
+    "city": "Munnar",
+    "state": "Kerala",
+    "country": "India",
+    "address": "Tea Garden Road",
+    "description": "Nature resort surrounded by tea plantations.",
+    "price": 6100,
+    "rating": 4.7,
+    "reviews": 1130,
+    "roomsAvailable": 19,
+    "amenities": [
+      "Spa",
+      "Restaurant",
+      "Parking",
+      "Free WiFi"
+    ],
+    "images": [
+      "https://example.com/images/munnar1.jpg"
+    ],
+    "featured": true
+  },
+  {
+    "_id": "687000000000000000000010",
+    "name": "Royal Heritage",
+    "city": "Jaipur",
+    "state": "Rajasthan",
+    "country": "India",
+    "address": "Pink City",
+    "description": "Traditional heritage hotel with royal interiors.",
+    "price": 7200,
+    "rating": 4.8,
+    "reviews": 1543,
+    "roomsAvailable": 21,
+    "amenities": [
+      "Pool",
+      "Restaurant",
+      "Spa",
+      "Free WiFi"
+    ],
+    "images": [
+      "https://example.com/images/jaipur1.jpg"
+    ],
+    "featured": true
+  },
+  {
+    "_id": "687000000000000000000011",
+    "name": "Sunrise Residency",
+    "city": "Nagpur",
+    "state": "Maharashtra",
+    "country": "India",
+    "address": "Civil Lines",
+    "description": "Affordable luxury in central Nagpur.",
+    "price": 3900,
+    "rating": 4.2,
+    "reviews": 410,
+    "roomsAvailable": 35,
+    "amenities": [
+      "Restaurant",
+      "Parking",
+      "Free WiFi"
+    ],
+    "images": [
+      "https://example.com/images/nagpur1.jpg"
+    ],
+    "featured": false
+  },
+  {
+    "_id": "687000000000000000000012",
+    "name": "Elite Stay",
+    "city": "Delhi",
+    "state": "Delhi",
+    "country": "India",
+    "address": "Connaught Place",
+    "description": "Premium hotel for business and leisure.",
+    "price": 7500,
+    "rating": 4.7,
+    "reviews": 1621,
+    "roomsAvailable": 28,
+    "amenities": [
+      "Gym",
+      "Pool",
+      "Restaurant",
+      "Free WiFi"
+    ],
+    "images": [
+      "https://example.com/images/delhi1.jpg"
+    ],
+    "featured": true
+  }
+]

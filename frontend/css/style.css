@@ -1,0 +1,399 @@
+/* ==========================================================
+   Google Fonts
+========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ==========================================================
+   RESET
+========================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f5f7fb;
+    color:#222;
+    overflow-x:hidden;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+ul{
+    list-style:none;
+}
+
+img{
+    width:100%;
+    display:block;
+}
+
+button,
+input,
+select{
+    outline:none;
+    border:none;
+    font-family:'Poppins',sans-serif;
+}
+
+/* ==========================================================
+   COMMON
+========================================================== */
+
+.section{
+    width:90%;
+    max-width:1300px;
+    margin:auto;
+    padding:80px 0;
+}
+
+.section-title{
+    text-align:center;
+    font-size:2.2rem;
+    font-weight:700;
+    color:#1d3557;
+    margin-bottom:50px;
+}
+
+/* ==========================================================
+   HERO
+========================================================== */
+
+.hero{
+    height:90vh;
+    background:url("../assets/images/backgrounds/hero.jpg") center/cover no-repeat;
+    position:relative;
+}
+
+.hero-overlay{
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.55);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.hero-content{
+    width:90%;
+    max-width:900px;
+    text-align:center;
+    color:#fff;
+}
+
+.hero-content h1{
+    font-size:3.5rem;
+    margin-bottom:20px;
+}
+
+.hero-content p{
+    font-size:1.1rem;
+    margin-bottom:35px;
+}
+
+/* ==========================================================
+   SEARCH BOX
+========================================================== */
+
+.search-box{
+
+    background:#fff;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(5,1fr);
+
+    gap:15px;
+}
+
+.search-box input,
+.search-box select{
+
+    padding:15px;
+
+    border:1px solid #ddd;
+
+    border-radius:8px;
+
+    font-size:15px;
+}
+
+.search-box button{
+
+    background:#0d6efd;
+
+    color:#fff;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    transition:.3s;
+}
+
+.search-box button:hover{
+
+    background:#084dbd;
+}
+
+/* ==========================================================
+   DESTINATION
+========================================================== */
+
+.destination-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:30px;
+}
+
+.destination-card{
+
+    background:#fff;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.3s;
+}
+
+.destination-card:hover{
+
+    transform:translateY(-8px);
+}
+
+.destination-card img{
+
+    height:220px;
+
+    object-fit:cover;
+}
+
+.destination-card h3{
+
+    text-align:center;
+
+    padding:18px;
+
+    font-size:22px;
+}
+
+/* ==========================================================
+   HOTEL
+========================================================== */
+
+.hotel-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:30px;
+}
+
+.hotel-card{
+
+    background:#fff;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.3s;
+}
+
+.hotel-card:hover{
+
+    transform:translateY(-10px);
+}
+
+.hotel-card img{
+
+    height:240px;
+
+    object-fit:cover;
+}
+
+.hotel-content{
+
+    padding:20px;
+}
+
+.hotel-content h3{
+
+    margin-bottom:10px;
+}
+
+.hotel-content p{
+
+    margin-bottom:10px;
+
+    color:#555;
+}
+
+.hotel-content h4{
+
+    color:#0d6efd;
+
+    margin-bottom:20px;
+}
+
+/* ==========================================================
+   BUTTON
+========================================================== */
+
+.btn{
+
+    display:inline-block;
+
+    background:#0d6efd;
+
+    color:#fff;
+
+    padding:12px 25px;
+
+    border-radius:8px;
+
+    transition:.3s;
+}
+
+.btn:hover{
+
+    background:#084dbd;
+}
+
+/* ==========================================================
+   WHY US
+========================================================== */
+
+.features{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:30px;
+}
+
+.feature-box{
+
+    background:#fff;
+
+    padding:40px 20px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    box-shadow:0 10px 20px rgba(0,0,0,.08);
+
+    transition:.3s;
+}
+
+.feature-box:hover{
+
+    transform:translateY(-8px);
+}
+
+.feature-box i{
+
+    font-size:50px;
+
+    color:#0d6efd;
+
+    margin-bottom:20px;
+}
+
+.feature-box h3{
+
+    margin-bottom:15px;
+}
+
+/* ==========================================================
+   NEWSLETTER
+========================================================== */
+
+.newsletter{
+
+    background:#0d6efd;
+
+    color:#fff;
+
+    padding:80px 20px;
+
+    text-align:center;
+}
+
+.newsletter h2{
+
+    margin-bottom:25px;
+}
+
+.newsletter form{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+}
+
+.newsletter input{
+
+    width:350px;
+
+    padding:15px;
+
+    border-radius:8px;
+}
+
+.newsletter button{
+
+    background:#fff;
+
+    color:#0d6efd;
+
+    padding:15px 30px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-weight:600;
+}
+
+.newsletter button:hover{
+
+    background:#f1f1f1;
+}
