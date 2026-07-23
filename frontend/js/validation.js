@@ -1,4 +1,4 @@
-/* ==========================================================
+/*=========================================================
    TravelEase Validation Utility
 ========================================================== */
 
@@ -10,7 +10,7 @@ function validateName(name) {
 
     const pattern = /^[A-Za-z ]+$/;
 
-    if (name.trim().length < VALIDATION.NAME_MIN_LENGTH) {
+   if (name.trim().length < 3)     {
 
         return {
             status: false,

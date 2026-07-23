@@ -9,9 +9,7 @@ let selectedHotel = null;
 ========================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-
     loadHotelDetails();
-
 });
 
 /* ==========================================================
@@ -22,92 +20,105 @@ async function loadHotelDetails() {
 
     const hotelId = localStorage.getItem("hotelId");
 
+    console.log("Hotel ID:", hotelId);
+
     if (!hotelId) {
-
+        alert("Hotel not selected.");
         window.location.href = "hotels.html";
-
         return;
-
     }
 
     try {
 
-        const response = await api.get(`${API.HOTEL_DETAILS}/${hotelId}`);
+        const url = `${API.HOTELS.DETAILS}/${hotelId}`;
 
-        selectedHotel = response.hotel || response;
+        console.log("Request URL:", url);
+
+        const response = await api.get(url);
+
+        console.log("API Response:", response);
+
+        if (!response.success || !response.hotel) {
+            throw new Error("Hotel not found");
+        }
+
+        selectedHotel = response.hotel;
 
         renderHotel(selectedHotel);
 
     } catch (error) {
 
-        console.error(error);
+        console.error("Hotel Details Error:", error);
 
-        const container = document.getElementById("hotelDetails");
-
-        if (container) {
-
-            container.innerHTML = "<h2>Unable to load hotel details.</h2>";
-
-        }
-
+        document.getElementById("hotelDetails").innerHTML = `
+            <div style="text-align:center;padding:40px;">
+                <h2>Unable to load Hotel Details</h2>
+                <p>${error.message}</p>
+                <button class="btn" onclick="goBack()">Back to Hotels</button>
+            </div>
+        `;
     }
-
 }
 
 /* ==========================================================
-   Render Hotel Details
+   Render Hotel
 ========================================================== */
 
 function renderHotel(hotel) {
 
     const container = document.getElementById("hotelDetails");
 
-    if (!container) return;
+    const image =
+        hotel.thumbnail ||
+        (hotel.images && hotel.images.length > 0
+            ? hotel.images[0]
+            : "assets/images/no-image.png");
 
     container.innerHTML = `
 
-        <div class="hotel-details-card">
+    <div class="hotel-details-card">
 
-            <div class="hotel-image">
+        <div class="hotel-image">
+            <img src="${image}" alt="${hotel.hotelName}">
+        </div>
 
-                <img src="${hotel.image}" alt="${hotel.name}">
+        <div class="hotel-info">
 
-            </div>
+            <h2>${hotel.hotelName}</h2>
 
-            <div class="hotel-info">
+            <p><strong>City:</strong> ${hotel.city}</p>
 
-                <h2>${hotel.name}</h2>
+            <p><strong>Address:</strong> ${hotel.address}</p>
 
-                <p><strong>Location:</strong> ${hotel.city}</p>
+            <p><strong>Rating:</strong> ⭐ ${hotel.rating}</p>
 
-                <p><strong>Rating:</strong> ⭐ ${hotel.rating}</p>
+            <p>
+                <strong>Price:</strong>
+                ${CONFIG.CURRENCY_SYMBOL}${hotel.pricePerNight} / Night
+            </p>
 
-                <p><strong>Price:</strong> ${CONFIG.CURRENCY_SYMBOL}${hotel.price} / Night</p>
+            <p>${hotel.description}</p>
 
-                <p><strong>Description:</strong></p>
+            <h3>Amenities</h3>
 
-                <p>${hotel.description}</p>
+            <ul>
+                ${(hotel.amenities || [])
+                    .map(item => `<li>${item}</li>`)
+                    .join("")}
+            </ul>
 
-                <h3>Amenities</h3>
+            <button class="btn" onclick="bookHotel()">
+                Book Now
+            </button>
 
-                <ul>
-
-                    ${(hotel.amenities || []).map(item => `<li>${item}</li>`).join("")}
-
-                </ul>
-
-                <button class="btn" onclick="bookHotel()">
-
-                    Book Now
-
-                </button>
-
-            </div>
+            <button class="btn" onclick="goBack()">
+                Back
+            </button>
 
         </div>
 
+    </div>
     `;
-
 }
 
 /* ==========================================================
@@ -119,25 +130,19 @@ function bookHotel() {
     if (!selectedHotel) return;
 
     localStorage.setItem(
-
-        STORAGE.BOOKING,
-
+        CONFIG.LOCAL_STORAGE.BOOKINGS,
         JSON.stringify(selectedHotel)
-
     );
 
     window.location.href = "booking.html";
-
 }
 
 /* ==========================================================
-   Go Back
+   Back
 ========================================================== */
 
 function goBack() {
-
     window.location.href = "hotels.html";
-
 }
 
 console.log("Hotel Details Module Loaded");

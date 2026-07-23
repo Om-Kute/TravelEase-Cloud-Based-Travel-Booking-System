@@ -14,11 +14,11 @@ class ApiService {
 
     getHeaders() {
 
-        const token = localStorage.getItem(STORAGE.TOKEN);
+        const token = localStorage.getItem(CONFIG.LOCAL_STORAGE.TOKEN);
 
         return {
             "Content-Type": "application/json",
-            "Authorization": token ? `Bearer ${token}` : ""
+            ...(token && { Authorization: `Bearer ${token}` })
         };
 
     }
@@ -29,22 +29,12 @@ class ApiService {
 
     async get(endpoint) {
 
-        try {
+        const response = await fetch(endpoint, {
+            method: "GET",
+            headers: this.getHeaders()
+        });
 
-            const response = await fetch(endpoint, {
-                method: "GET",
-                headers: this.getHeaders()
-            });
-
-            return await this.handleResponse(response);
-
-        } catch (error) {
-
-            console.error(error);
-
-            throw error;
-
-        }
+        return this.handleResponse(response);
 
     }
 
@@ -54,27 +44,21 @@ class ApiService {
 
     async post(endpoint, data) {
 
-        try {
+        console.log("========== API REQUEST ==========");
+        console.log("Endpoint :", endpoint);
+        console.log("Request :", data);
 
-            const response = await fetch(endpoint, {
+        const response = await fetch(endpoint, {
 
-                method: "POST",
+            method: "POST",
 
-                headers: this.getHeaders(),
+            headers: this.getHeaders(),
 
-                body: JSON.stringify(data)
+            body: JSON.stringify(data)
 
-            });
+        });
 
-            return await this.handleResponse(response);
-
-        } catch (error) {
-
-            console.error(error);
-
-            throw error;
-
-        }
+        return this.handleResponse(response);
 
     }
 
@@ -84,27 +68,17 @@ class ApiService {
 
     async put(endpoint, data) {
 
-        try {
+        const response = await fetch(endpoint, {
 
-            const response = await fetch(endpoint, {
+            method: "PUT",
 
-                method: "PUT",
+            headers: this.getHeaders(),
 
-                headers: this.getHeaders(),
+            body: JSON.stringify(data)
 
-                body: JSON.stringify(data)
+        });
 
-            });
-
-            return await this.handleResponse(response);
-
-        } catch (error) {
-
-            console.error(error);
-
-            throw error;
-
-        }
+        return this.handleResponse(response);
 
     }
 
@@ -114,79 +88,72 @@ class ApiService {
 
     async delete(endpoint) {
 
-        try {
+        const response = await fetch(endpoint, {
 
-            const response = await fetch(endpoint, {
+            method: "DELETE",
 
-                method: "DELETE",
+            headers: this.getHeaders()
 
-                headers: this.getHeaders()
+        });
 
-            });
-
-            return await this.handleResponse(response);
-
-        } catch (error) {
-
-            console.error(error);
-
-            throw error;
-
-        }
+        return this.handleResponse(response);
 
     }
 
     /* ======================================================
-       Upload File
+       Upload
     ====================================================== */
 
     async upload(endpoint, formData) {
 
-        try {
+        const token = localStorage.getItem(CONFIG.LOCAL_STORAGE.TOKEN);
 
-            const token = localStorage.getItem(STORAGE.TOKEN);
+        const response = await fetch(endpoint, {
 
-            const response = await fetch(endpoint, {
+            method: "POST",
 
-                method: "POST",
+            headers: token
+                ? {
+                    Authorization: `Bearer ${token}`
+                  }
+                : {},
 
-                headers: {
+            body: formData
 
-                    Authorization: token
-                        ? `Bearer ${token}`
-                        : ""
+        });
 
-                },
-
-                body: formData
-
-            });
-
-            return await this.handleResponse(response);
-
-        } catch (error) {
-
-            console.error(error);
-
-            throw error;
-
-        }
+        return this.handleResponse(response);
 
     }
 
     /* ======================================================
-       Handle Response
+       Response Handler
     ====================================================== */
 
     async handleResponse(response) {
 
-        const data = await response.json();
+        const contentType = response.headers.get("content-type");
+
+        let data;
+
+        if (contentType && contentType.includes("application/json")) {
+
+            data = await response.json();
+
+        } else {
+
+            const text = await response.text();
+
+            throw new Error(text);
+
+        }
+
+        console.log("========== API RESPONSE ==========");
+        console.log(data);
 
         if (!response.ok) {
 
-            throw new Error(
-                data.message || "API Request Failed"
-            );
+            throw new Error(data.message || "API Request Failed");
 
         }
 

@@ -1,4 +1,4 @@
-/* ==========================================================
+k/* ==========================================================
    TravelEase Hotels Module
 ========================================================== */
 
@@ -9,9 +9,7 @@ let hotels = [];
 ========================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-
     loadHotels();
-
 });
 
 /* ==========================================================
@@ -22,19 +20,25 @@ async function loadHotels() {
 
     try {
 
-        const response = await api.get(API.HOTELS);
+        console.log("===== DEBUG =====");
+        console.log("API.HOTELS.ALL =", API.HOTELS.ALL);
+        console.log("Type =", typeof API.HOTELS.ALL);
 
-        hotels = response.hotels || response;
+        const response = await api.get(API.HOTELS.ALL);
+
+        console.log("Response =", response);
+
+        hotels = response.hotels || [];
 
         displayHotels(hotels);
 
     } catch (error) {
 
-        console.error(error);
+        console.error("Hotel Load Error:", error);
 
         document.getElementById("hotelContainer").innerHTML =
-            "<h2>Unable to load hotels.</h2>";
-
+            `<h2>Unable to load hotels.</h2>
+             <p style="color:red">${error.message}</p>`;
     }
 
 }
@@ -47,53 +51,53 @@ function displayHotels(data) {
 
     const container = document.getElementById("hotelContainer");
 
-    if (!container) return;
-
     container.innerHTML = "";
 
-    if (data.length === 0) {
+    if (!data || data.length === 0) {
 
-        container.innerHTML =
-            "<h2>No Hotels Found</h2>";
-
+        container.innerHTML = "<h2>No Hotels Available</h2>";
         return;
-
     }
 
     data.forEach(hotel => {
 
+        const image =
+            hotel.thumbnail ||
+            (hotel.images && hotel.images.length > 0
+                ? hotel.images[0]
+                : "assets/images/no-image.png");
+
         container.innerHTML += `
+            <div class="hotel-card">
 
-        <div class="hotel-card">
+                <img src="${image}" alt="${hotel.hotelName}">
 
-            <img src="${hotel.image}" alt="${hotel.name}">
+                <div class="hotel-content">
 
-            <div class="hotel-content">
+                    <h3>${hotel.hotelName}</h3>
 
-                <h3>${hotel.name}</h3>
+                    <p>
+                        <i class="fa-solid fa-location-dot"></i>
+                        ${hotel.city}
+                    </p>
 
-                <p><i class="fa-solid fa-location-dot"></i> ${hotel.city}</p>
+                    <p>⭐ ${hotel.rating}</p>
 
-                <p>⭐ ${hotel.rating}</p>
+                    <h4>
+                        ${CONFIG.CURRENCY_SYMBOL}${hotel.pricePerNight} / Night
+                    </h4>
 
-                <h4>${CONFIG.CURRENCY_SYMBOL}${hotel.price} / Night</h4>
+                    <button
+                        class="btn"
+                        onclick="viewHotel('${hotel._id}')">
+                        View Details
+                    </button>
 
-                <button
-                    class="btn"
-                    onclick="viewHotel('${hotel.id}')">
-
-                    View Details
-
-                </button>
+                </div>
 
             </div>
-
-        </div>
-
         `;
-
     });
-
 }
 
 /* ==========================================================
@@ -102,67 +106,17 @@ function displayHotels(data) {
 
 function searchHotels() {
 
-    const keyword =
-        document.getElementById("searchInput")
+    const keyword = document
+        .getElementById("searchInput")
         .value
         .toLowerCase();
 
-    const filteredHotels = hotels.filter(hotel =>
-
-        hotel.name.toLowerCase().includes(keyword) ||
-
-        hotel.city.toLowerCase().includes(keyword)
-
-    );
-
-    displayHotels(filteredHotels);
-
-}
-
-/* ==========================================================
-   Filter By City
-========================================================== */
-
-function filterCity(city) {
-
-    if (city === "All") {
-
-        displayHotels(hotels);
-
-        return;
-
-    }
-
     const filtered = hotels.filter(hotel =>
-
-        hotel.city === city
-
+        hotel.hotelName.toLowerCase().includes(keyword) ||
+        hotel.city.toLowerCase().includes(keyword)
     );
 
     displayHotels(filtered);
-
-}
-
-/* ==========================================================
-   Sort By Price
-========================================================== */
-
-function sortPrice(order) {
-
-    let sorted = [...hotels];
-
-    if (order === "low") {
-
-        sorted.sort((a, b) => a.price - b.price);
-
-    } else {
-
-        sorted.sort((a, b) => b.price - a.price);
-
-    }
-
-    displayHotels(sorted);
-
 }
 
 /* ==========================================================
@@ -172,7 +126,6 @@ function sortPrice(order) {
 function viewHotel(id) {
 
     localStorage.setItem("hotelId", id);
-
     window.location.href = "hotel-details.html";
 
 }

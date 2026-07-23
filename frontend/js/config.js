@@ -6,55 +6,15 @@ const CONFIG = {
 
     APP_NAME: "TravelEase",
 
-    APP_VERSION: "1.0.0",
+    APP_VERSION: "2.0.0",
 
-    API_BASE_URL: "http://localhost:5000/api",
+    API_BASE_URL: "/api",
 
-    IMAGE_BASE_URL: "http://localhost:5000/uploads",
+    IMAGE_BASE_URL: "/uploads",
 
-    DEFAULT_CURRENCY: "INR",
+    CURRENCY_SYMBOL: "₹",
 
     DEFAULT_LANGUAGE: "en",
-
-    PAGINATION_LIMIT: 10,
-
-    HOTEL_PAGE_SIZE: 9,
-
-    MAX_FILE_SIZE: 5 * 1024 * 1024,
-
-    ALLOWED_IMAGE_TYPES: [
-
-        "image/jpeg",
-
-        "image/jpg",
-
-        "image/png",
-
-        "image/webp"
-
-    ],
-
-    BOOKING_STATUS: {
-
-        PENDING: "Pending",
-
-        CONFIRMED: "Confirmed",
-
-        COMPLETED: "Completed",
-
-        CANCELLED: "Cancelled"
-
-    },
-
-    PAYMENT_STATUS: {
-
-        PENDING: "Pending",
-
-        SUCCESS: "Success",
-
-        FAILED: "Failed"
-
-    },
 
     LOCAL_STORAGE: {
 
@@ -77,37 +37,22 @@ const API = {
     AUTH: {
 
         REGISTER: `${CONFIG.API_BASE_URL}/auth/register`,
-
         LOGIN: `${CONFIG.API_BASE_URL}/auth/login`,
-
         PROFILE: `${CONFIG.API_BASE_URL}/auth/profile`
-
-    },
-
-    USERS: {
-
-        ALL: `${CONFIG.API_BASE_URL}/users`,
-
-        UPDATE: `${CONFIG.API_BASE_URL}/users/update`
 
     },
 
     HOTELS: {
 
         ALL: `${CONFIG.API_BASE_URL}/hotels`,
-
-        DETAILS: `${CONFIG.API_BASE_URL}/hotels`,
-
-        SEARCH: `${CONFIG.API_BASE_URL}/hotels/search`
+        DETAILS: `${CONFIG.API_BASE_URL}/hotels`
 
     },
 
     BOOKINGS: {
 
         CREATE: `${CONFIG.API_BASE_URL}/bookings`,
-
-        HISTORY: `${CONFIG.API_BASE_URL}/bookings/history`,
-
+        HISTORY: `${CONFIG.API_BASE_URL}/bookings/my-bookings`,
         CANCEL: `${CONFIG.API_BASE_URL}/bookings/cancel`
 
     },
@@ -115,41 +60,11 @@ const API = {
     PAYMENTS: {
 
         CREATE: `${CONFIG.API_BASE_URL}/payments`,
-
         VERIFY: `${CONFIG.API_BASE_URL}/payments/verify`
-
-    },
-
-    UPLOAD: {
-
-        IMAGE: `${CONFIG.API_BASE_URL}/upload`
 
     }
 
 };
 
-/* =====================================================
-   COMMON HEADERS
-===================================================== */
-
-function getHeaders() {
-
-    const token = localStorage.getItem(CONFIG.LOCAL_STORAGE.TOKEN);
-
-    return {
-
-        "Content-Type": "application/json",
-
-        Authorization: token ? `Bearer ${token}` : ""
-
-    };
-
-}
-
-/* =====================================================
-   EXPORTS
-===================================================== */
-
 window.CONFIG = CONFIG;
 window.API = API;
-window.getHeaders = getHeaders;

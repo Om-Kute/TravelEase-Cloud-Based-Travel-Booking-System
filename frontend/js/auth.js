@@ -12,7 +12,7 @@ const Auth = {
 
         try {
 
-            const response = await api.post(API.LOGIN, {
+            const response = await api.post(API.AUTH.LOGIN,  {
 
                 email,
                 password
@@ -20,12 +20,12 @@ const Auth = {
             });
 
             localStorage.setItem(
-                STORAGE.TOKEN,
+                CONFIG.LOCAL_STORAGE.TOKEN,
                 response.token
             );
 
             localStorage.setItem(
-                STORAGE.USER,
+                CONFIG.LOCAL_STORAGE.USER,
                 JSON.stringify(response.user)
             );
 
@@ -50,8 +50,8 @@ const Auth = {
         try {
 
             const response = await api.post(
-                API.SIGNUP,
-                userData
+            API.AUTH.REGISTER,
+            userData
             );
 
             alert(response.message);
@@ -72,9 +72,9 @@ const Auth = {
 
     logout() {
 
-        localStorage.removeItem(STORAGE.TOKEN);
+        localStorage.removeItem(CONFIG.LOCAL_STORAGE.TOKEN);;
 
-        localStorage.removeItem(STORAGE.USER);
+        localStorage.removeItem(CONFIG.LOCAL_STORAGE.USER);;
 
         alert("Logged Out Successfully");
 
@@ -88,7 +88,7 @@ const Auth = {
 
     isLoggedIn() {
 
-        return localStorage.getItem(STORAGE.TOKEN) !== null;
+        return localStorage.getItem(CONFIG.LOCAL_STORAGE.TOKEN) !== null;
 
     },
 
@@ -99,7 +99,7 @@ const Auth = {
     getUser() {
 
         return JSON.parse(
-            localStorage.getItem(STORAGE.USER)
+            localStorage.getItem(CONFIG.LOCAL_STORAGE.USER)
         );
 
     }

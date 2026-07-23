@@ -65,7 +65,7 @@ function validateDates(checkIn, checkOut) {
     return true;
 }
 
-function submitBooking(e) {
+async function submitBooking(e) {
 
     e.preventDefault();
 
@@ -74,7 +74,7 @@ function submitBooking(e) {
     const guestMobile = document.getElementById("guestMobile").value.trim();
     const checkInDate = document.getElementById("checkIn").value;
     const checkOutDate = document.getElementById("checkOut").value;
-    const totalGuests = parseInt(document.getElementById("guests").value,10);
+    const totalGuests = parseInt(document.getElementById("guests").value);
 
     if (
         !guestName ||
@@ -87,43 +87,52 @@ function submitBooking(e) {
         return;
     }
 
-    if (!validateDates(checkInDate, checkOutDate))
-        return;
+    if (!validateDates(checkInDate, checkOutDate)) return;
 
-    const paymentBooking = {
-
-        hotelId: selectedHotel._id,
-
-        hotelName: selectedHotel.name,
-
-        city: selectedHotel.location,
-
-        price: selectedHotel.price,
-
-        rating: selectedHotel.rating,
-
-        guestName: guestName,
-
-        guestEmail: guestEmail,
-
-        guestMobile: guestMobile,
-
-        checkInDate: checkInDate,
-
-        checkOutDate: checkOutDate,
-
-        totalGuests: totalGuests,
-
+    const bookingData = {
+        hotel: selectedHotel._id,
+        guestName,
+        guestEmail,
+        guestMobile,
+        checkInDate,
+        checkOutDate,
+        totalGuests,
         roomType: "Standard"
     };
 
-    localStorage.setItem(
-        CONFIG.LOCAL_STORAGE.BOOKINGS,
-        JSON.stringify(paymentBooking)
-    );
+    try {
 
-    window.location.href = "payment.html";
+        const response = await api.post(
+            API.BOOKINGS.CREATE,
+            bookingData
+        );
+
+        const paymentBooking = {
+            bookingId: response.booking._id,
+            hotelId: selectedHotel._id,
+            hotelName: selectedHotel.name,
+            city: selectedHotel.location,
+            price: selectedHotel.price,
+            checkIn: checkInDate,
+            checkOut: checkOutDate,
+            guests: totalGuests
+        };
+
+        localStorage.setItem(
+            CONFIG.LOCAL_STORAGE.BOOKINGS,
+            JSON.stringify(paymentBooking)
+        );
+
+        alert("Booking Successful!");
+
+        window.location.href = "payment.html";
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(error.message || "Booking Failed");
+    }
 }
 
-console.log("Booking Module Loaded Successfully");
-
+console.log("Booking Module Loaded");

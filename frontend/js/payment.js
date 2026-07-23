@@ -4,133 +4,112 @@
 
 let booking = null;
 
-/* ==========================================================
-   Page Load
-========================================================== */
-
 document.addEventListener("DOMContentLoaded", () => {
-
     loadPaymentSummary();
 
+    document
+        .getElementById("paymentForm")
+        .addEventListener("submit", processPayment);
 });
 
 /* ==========================================================
-   Load Booking Summary
+   Load Payment Summary
 ========================================================== */
 
 function loadPaymentSummary() {
 
-    const data = localStorage.getItem(STORAGE.BOOKING);
+    booking = JSON.parse(
+        localStorage.getItem(CONFIG.LOCAL_STORAGE.BOOKINGS)
+    );
 
-    if (!data) {
-
+    if (!booking) {
+        alert("No booking found.");
         window.location.href = "booking.html";
-
         return;
-
     }
 
-    booking = JSON.parse(data);
-
-    const summary = document.getElementById("paymentSummary");
-
-    if (!summary) return;
-
-    summary.innerHTML = `
-
-        <h2>${booking.hotelName || booking.name}</h2>
+    document.getElementById("paymentSummary").innerHTML = `
+        <h3>${booking.hotelName}</h3>
 
         <p><strong>Location:</strong> ${booking.city}</p>
 
-        <p><strong>Check-In:</strong> ${booking.checkIn}</p>
+        <p><strong>Check In:</strong> ${booking.checkInDate}</p>
 
-        <p><strong>Check-Out:</strong> ${booking.checkOut}</p>
+        <p><strong>Check Out:</strong> ${booking.checkOutDate}</p>
 
-        <p><strong>Guests:</strong> ${booking.guests}</p>
+        <p><strong>Guests:</strong> ${booking.totalGuests}</p>
 
-        <p><strong>Amount:</strong> ${CONFIG.CURRENCY_SYMBOL}${booking.price}</p>
+        <p><strong>Price:</strong> ₹${booking.price}</p>
 
+        <p><strong>Rating:</strong> ⭐ ${booking.rating}</p>
     `;
-
 }
 
 /* ==========================================================
-   Payment Form
+   Payment
 ========================================================== */
 
-const paymentForm = document.getElementById("paymentForm");
+async function processPayment(e) {
 
-if (paymentForm) {
+    e.preventDefault();
 
-    paymentForm.addEventListener("submit", async (e) => {
+    const cardName = document.getElementById("cardName").value.trim();
+    const cardNumber = document.getElementById("cardNumber").value.trim();
+    const expiry = document.getElementById("expiry").value;
+    const cvv = document.getElementById("cvv").value.trim();
 
-        e.preventDefault();
+    if (!cardName || !cardNumber || !expiry || !cvv) {
+        alert("Please fill all payment details.");
+        return;
+    }
 
-        const cardName =
-            document.getElementById("cardName").value.trim();
+    const bookingData = {
 
-        const cardNumber =
-            document.getElementById("cardNumber").value.trim();
+        hotel: booking.hotelId,
 
-        const expiry =
-            document.getElementById("expiry").value.trim();
+        guestName: booking.guestName,
 
-        const cvv =
-            document.getElementById("cvv").value.trim();
+        guestEmail: booking.guestEmail,
 
-        if (
-            !cardName ||
-            !cardNumber ||
-            !expiry ||
-            !cvv
-        ) {
+        guestMobile: booking.guestMobile,
 
-            alert("Please fill all payment details.");
+        checkInDate: booking.checkInDate,
 
-            return;
+        checkOutDate: booking.checkOutDate,
 
-        }
+        totalGuests: booking.totalGuests,
 
-        const paymentData = {
+        roomType: booking.roomType
+    };
 
-            bookingId: booking.id,
+    try {
 
-            hotelId: booking.hotelId,
+        const response = await api.post(
+            API.BOOKINGS.CREATE,
+            bookingData
+        );
 
-            amount: booking.price,
+        alert("Payment Successful!\nBooking Confirmed.");
 
-            paymentMethod: "Card",
+        localStorage.setItem(
+            "lastBooking",
+            JSON.stringify(response.booking)
+        );
 
-            status: PAYMENT_STATUS.SUCCESS
+        localStorage.removeItem(CONFIG.LOCAL_STORAGE.BOOKINGS);
 
-        };
+        window.location.href = "history.html";
 
-        try {
+    } catch (error) {
 
-            const response = await api.post(
+        console.error(error);
 
-                API.PAYMENT,
-
-                paymentData
-
-            );
-
-            alert(response.message || "Payment Successful");
-
-            window.location.href = "history.html";
-
-        } catch (error) {
-
-            alert(error.message);
-
-        }
-
-    });
-
+        alert(error.message || "Payment Failed");
+    }
 }
 
 /* ==========================================================
-   Card Number Formatter
+   Card Number Format
 ========================================================== */
 
 const cardInput = document.getElementById("cardNumber");
@@ -162,9 +141,7 @@ if (cvvInput) {
         this.value = this.value.replace(/\D/g, "");
 
         if (this.value.length > 3) {
-
             this.value = this.value.slice(0, 3);
-
         }
 
     });
