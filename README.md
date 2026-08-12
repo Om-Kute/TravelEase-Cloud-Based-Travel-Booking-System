@@ -67,3 +67,24 @@ The basic architecture of TravelEase follows a cloud-based application model:
                     ┌──────────────────┐
                     │     Database     │
                     └──────────────────┘
+📂 Project Structure
+TravelEase-Cloud-Based-Travel-Booking-System/
+│
+├── frontend/
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+│
+├── backend/
+│   └── application files
+│
+├── database/
+│   └── database files
+│
+├── assets/
+│   ├── images/
+│   └── icons/
+│
+└── README.md
+
+Update the structure above if your repository uses a different folder organization.
