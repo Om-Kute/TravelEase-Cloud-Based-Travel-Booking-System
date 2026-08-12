@@ -32,3 +32,14 @@ Manage users
 Manage travel services
 Monitor bookings
 Maintain application data
+
+🛠️ Technologies Used
+Technology	Purpose
+HTML	Frontend structure
+CSS	User interface and styling
+JavaScript	Frontend functionality
+Cloud Services	Application hosting
+Database	Data storage
+Git & GitHub	Version control
+
+Technologies can be updated according to the final implementation of the project.
