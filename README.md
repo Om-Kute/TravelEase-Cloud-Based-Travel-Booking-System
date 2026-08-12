@@ -88,3 +88,42 @@ TravelEase-Cloud-Based-Travel-Booking-System/
 └── README.md
 
 Update the structure above if your repository uses a different folder organization.
+⚙️ Installation & Setup
+1. Clone the Repository
+git clone https://github.com/Om-Kute/TravelEase-Cloud-Based-Travel-Booking-System.git
+2. Navigate to the Project
+cd TravelEase-Cloud-Based-Travel-Booking-System
+3. Install Dependencies
+
+If the project contains a package.json file:
+
+npm install
+4. Start the Application
+npm start
+
+Or use the appropriate command specified by the project.
+
+☁️ Cloud Deployment
+
+The project can be deployed using cloud infrastructure such as:
+
+AWS EC2
+AWS S3
+AWS RDS
+AWS Lambda
+AWS API Gateway
+AWS CloudFront
+
+A production deployment can use multiple cloud services to provide scalability, security, and reliability.
+
+🔐 Security Considerations
+
+The application can be enhanced with:
+
+Authentication and authorization
+Password hashing
+HTTPS/SSL
+Input validation
+Secure API endpoints
+Database access control
+Environment variables for sensitive credentials
