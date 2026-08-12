@@ -43,3 +43,27 @@ Database	Data storage
 Git & GitHub	Version control
 
 Technologies can be updated according to the final implementation of the project.
+🏗️ System Architecture
+
+The basic architecture of TravelEase follows a cloud-based application model:
+
+                    ┌──────────────────┐
+                    │      User        │
+                    └────────┬─────────┘
+                             │
+                             ▼
+                    ┌──────────────────┐
+                    │  Web Interface   │
+                    │ HTML/CSS/JS      │
+                    └────────┬─────────┘
+                             │
+                             ▼
+                    ┌──────────────────┐
+                    │ Application/API  │
+                    │     Layer        │
+                    └────────┬─────────┘
+                             │
+                             ▼
+                    ┌──────────────────┐
+                    │     Database     │
+                    └──────────────────┘
